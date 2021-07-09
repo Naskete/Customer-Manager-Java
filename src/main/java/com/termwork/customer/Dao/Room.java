@@ -3,6 +3,7 @@ package com.termwork.customer.Dao;
 // 返回的客房名单只要单人间和双人间就行，每个客房加个是否入住的属性就行
 // 每个客房的属性有：是否入住，类型，历史入住人数
 public class Room {
+    private int id;
     private int number;
     private int type;
     private boolean status = false;
@@ -15,6 +16,14 @@ public class Room {
     public Room(int type){
         this.number = 0;
         this.type = type;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getNumber() {
