@@ -1,18 +1,16 @@
 package com.termwork.customer.Dao;
 
 public class Customer {
-    private int id;
-    private String name;
-    private int count;
-    private Record record;
+    private int id;             // id 身份证号
+    private String name;        // name 姓名
+    private int count;          // count 入住次数
 
     public Customer() {}
 
-    public Customer(int id, String name, int count, Record record) {
+    public Customer(int id, String name, int count) {
         this.id = id;
         this.name = name;
         this.count = count;
-        this.record = record;
     }
 
     public int getId() {
@@ -37,13 +35,5 @@ public class Customer {
 
     public void setCount(int count) {
         this.count = count;
-    }
-
-    public Record getRecord() {
-        return record;
-    }
-
-    public void setRecord(Record record) {
-        this.record = record;
     }
 }
