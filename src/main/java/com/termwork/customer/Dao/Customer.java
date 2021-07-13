@@ -1,23 +1,24 @@
 package com.termwork.customer.Dao;
 
 public class Customer {
-    private int id;             // id 身份证号
+    private String id;            // id 身份证号
     private String name;        // name 姓名
+    private String phone;       // phone 电话号码
     private int count;          // count 入住次数
 
     public Customer() {}
 
-    public Customer(int id, String name, int count) {
+    public Customer(String id, String name, int count) {
         this.id = id;
         this.name = name;
         this.count = count;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -27,6 +28,14 @@ public class Customer {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public int getCount() {
