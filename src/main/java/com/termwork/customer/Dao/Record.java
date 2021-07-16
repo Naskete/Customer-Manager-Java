@@ -1,11 +1,23 @@
 package com.termwork.customer.Dao;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.util.Date;
 
+@Entity
 public class Record {
+    @Id
     private int id;         // id 记录号
-    private int cusID;      // cusID 用户id
+
+    private String cusID;      // cusID 用户id
+
     private int num;        // number 房间号
+
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date date;      // date 日期
 
     public Record() {}
@@ -18,11 +30,11 @@ public class Record {
         this.id = id;
     }
 
-    public int getCusID() {
+    public String getCusID() {
         return cusID;
     }
 
-    public void setCusID(int cusID) {
+    public void setCusID(String cusID) {
         this.cusID = cusID;
     }
 

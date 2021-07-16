@@ -1,7 +1,12 @@
 package com.termwork.customer.Dao;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Customer {
-    private String id;            // id 身份证号
+    @Id
+    private String id;          // id 身份证号
     private String name;        // name 姓名
     private String phone;       // phone 电话号码
     private int count;          // count 入住次数

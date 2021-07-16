@@ -1,6 +1,11 @@
 package com.termwork.customer.Dao;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Room {
+    @Id
     private int roomId;             // roomId 客房号
     private int number;             // number 历史入住人数
     private int type;               // type 类型
@@ -10,11 +15,19 @@ public class Room {
     public Room(){
         this.number = 0;
         this.type = 1;
+        this.price = 40.0;
     }
 
     public Room(int type){
         this.number = 0;
         this.type = type;
+    }
+
+    public Room(int roomId, int type, double price) {
+        this.roomId = roomId;
+        this.type = type;
+        this.price = price;
+        this.number = 0;
     }
 
     public int getRoomId() {
