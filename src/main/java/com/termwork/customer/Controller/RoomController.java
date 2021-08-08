@@ -63,11 +63,10 @@ public class RoomController {
     // 添加房间
     @PostMapping("/addRoom")
     public Object addRoom(@RequestParam("roomID") int roomID, @RequestParam("type") int type, @RequestParam("price") double price){
-        if(roomService.addRoom(roomID,type,price)){
+        if(roomService.addRoom(roomID,type,price))
             return new ResultJson(200, "添加成功");
-        } else {
-            return new ResultJson(400, "添加失败");
-        }
+        return new ResultJson(400, "添加失败");
+
     }
 
     // 删除房间
@@ -92,12 +91,14 @@ public class RoomController {
         return new ResultJson(400, "删除失败");
     }
 
+    // TODO price
     @PostMapping("/price")
     public Object price(@RequestParam("roomID") int roomId){
         double price = managerService.price(roomId);
         return new ResultJson(200, "success", price);
     }
 
+    // TODO price
     @PostMapping("/checkOut")
     public Object checkOut(){
         managerService.checkOut();
