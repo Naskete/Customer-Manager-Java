@@ -3,9 +3,11 @@ package com.termwork.customer.Service;
 import com.termwork.customer.Dao.Room;
 import com.termwork.customer.Mapper.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class RoomService {
 
     @Autowired
@@ -20,15 +22,23 @@ public class RoomService {
     }
 
     public Object getRoomInfo(int roomId){
-        return null;
+        return roomRepository.getRoomByRoomId(roomId);
     }
 
-    public Object addRoom(int roomId, int type, double price){
-        return null;
+    public boolean addRoom(int roomId, int type, double price){
+        try{
+            roomRepository.addRoom(roomId,type,price);
+        } catch (Exception e){
+            e.printStackTrace();
+            System.out.println(e);
+            return false;
+        }
+        return true;
     }
 
-    public Object deleteRoom(int roomId){
-        return null;
+    public boolean deleteRoom(int roomId){
+        roomRepository.deleteRoom(roomId);
+        return true;
     }
 
 }
