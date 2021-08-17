@@ -30,13 +30,15 @@ public class RoomService {
             roomRepository.addRoom(roomId,type,price);
         } catch (Exception e){
             e.printStackTrace();
-            System.out.println(e);
             return false;
         }
         return true;
     }
 
     public boolean deleteRoom(int roomId){
+        Room room = roomRepository.getRoomByRoomId(roomId);
+        if(room==null)
+            return false;
         roomRepository.deleteRoom(roomId);
         return true;
     }
