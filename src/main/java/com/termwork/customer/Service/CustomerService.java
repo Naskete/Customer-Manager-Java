@@ -21,11 +21,13 @@ public class CustomerService {
 
     public Object getCustomerInfo(String id){
         Customer customer = customerRepository.getCustomerById(id);
+        List<Record> records = recordRepository.getRecordByCusID(id);
         CustomerInfo info = new CustomerInfo();
         info.setId(customer.getId());
         info.setName(customer.getName());
         info.setPhone(customer.getPhone());
         info.setCount(customer.getCount());
+        info.setRecords(records);
         return info;
     }
 
