@@ -13,9 +13,6 @@ import java.util.Date;
 @RestController
 @RequestMapping("/api")
 public class RoomController {
-    // TODO 优化返回值
-    // TODO 异常处理
-
     @Autowired
     private RoomService roomService;
 
@@ -35,8 +32,12 @@ public class RoomController {
 
     // 登记入住
     @PostMapping("/checkin")
-    public Object checkIn(@RequestParam("roomID") int roomID, @RequestParam("id") String id, @RequestParam("name") String name, @RequestParam("phone") String phone){
-        if(managerService.checkIn(roomID, id, name, phone))
+    public Object checkIn(@RequestParam("roomID") int roomID,
+                          @RequestParam("id") String id,
+                          @RequestParam("name") String name,
+                          @RequestParam("phone") String phone,
+                          @RequestParam("end") String end){
+        if(managerService.checkIn(roomID, id, name, phone, end))
             return new ResultJson(200, "登记成功");
         return new ResultJson(400, "登记失败");
     }
@@ -79,7 +80,7 @@ public class RoomController {
         return new ResultJson(400,"删除失败,房间不存在");
     }
 
-    // TODO 获取旅客信息
+    // 获取旅客信息
     @PostMapping("/info/customer")
     public Object customerInfo(@RequestParam("id") String id){
         return customerService.getCustomerInfo(id);
@@ -93,17 +94,23 @@ public class RoomController {
         return new ResultJson(400, "删除失败，旅客不存在");
     }
 
-    // TODO price
+    // price
     @PostMapping("/price")
-    public Object price(@RequestParam("roomID") int roomId, @RequestParam("date") Date cur){
-        double price = managerService.price(roomId);
+    public Object price(@RequestParam("roomID") int roomId,
+                        @RequestParam("start") String start,
+                        @RequestParam("end") String end){
+        double price = managerService.price(roomId, start, end);
+        if(price==0.0)
+            return new ResultJson(400, "unKnow error");
         return new ResultJson(200, "success", price);
     }
 
-    // TODO checkOut
+    // TODO history, count
+    // checkOut
     @PostMapping("/checkOut")
-    public Object checkOut(){
-        managerService.checkOut();
+    public Object checkOut(@RequestParam("roomID") int roomId,
+                           @RequestParam("id") String id){
+        managerService.checkOut(roomId);
         return new ResultJson(200, "checkout");
     }
 }
