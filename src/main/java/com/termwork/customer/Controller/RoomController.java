@@ -7,9 +7,6 @@ import com.termwork.customer.Service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
-
-
 @RestController
 @RequestMapping("/api")
 public class RoomController {
@@ -61,10 +58,8 @@ public class RoomController {
         return roomService.getRoomInfo(roomId);
     }
 
-    // TODO 替换房间信息中的0/1改为单双人间？
-
     // 添加房间
-    @PostMapping("/addRoom")
+    @PostMapping("/add_room")
     public Object addRoom(@RequestParam("roomID") int roomID, @RequestParam("type") int type, @RequestParam("price") double price){
         if(roomService.addRoom(roomID,type,price))
             return new ResultJson(200, "添加成功");
@@ -73,7 +68,7 @@ public class RoomController {
     }
 
     // 删除房间
-    @PostMapping("/deleteRoom")
+    @PostMapping("/delete_room")
     public Object deleteRoom(@RequestParam("roomID") int roomID){
         if(roomService.deleteRoom(roomID))
             return new ResultJson(200,"删除成功");
@@ -87,7 +82,7 @@ public class RoomController {
     }
 
     // 删除旅客
-    @PostMapping("/deleteCustomer")
+    @PostMapping("/delete_customer")
     public Object deleteRecord(@RequestParam("id") String id){
         if(customerService.deleteCustomer(id))
             return new ResultJson(200, "删除成功");
@@ -107,10 +102,10 @@ public class RoomController {
 
     // TODO history, count
     // checkOut
-    @PostMapping("/checkOut")
+    @PostMapping("/checkout")
     public Object checkOut(@RequestParam("roomID") int roomId,
                            @RequestParam("id") String id){
-        managerService.checkOut(roomId);
+        managerService.checkOut(roomId, id);
         return new ResultJson(200, "checkout");
     }
 }
