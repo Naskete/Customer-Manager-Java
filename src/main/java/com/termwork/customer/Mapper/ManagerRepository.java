@@ -12,7 +12,7 @@ import java.util.Date;
 @Repository
 public interface ManagerRepository extends JpaRepository<Record, Integer> {
     @Modifying
-    @Query(value = "INSERT INTO record (cusid, start, num, end) VALUES (?2, CURRENT_DATE(), ?1, ?3)", nativeQuery = true)
+    @Query(value = "INSERT INTO record (cusid, start, roomid, end) VALUES (?2, CURRENT_DATE(), ?1, ?3)", nativeQuery = true)
     @Transactional
     void checkIn(int roomId, String id, Date endTime);
 }

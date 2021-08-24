@@ -40,4 +40,9 @@ public interface RoomRepository extends JpaRepository<Room, Integer> {
     @Query("UPDATE Room SET status=?2 WHERE roomId=?1")
     @Transactional
     void updateStatus(int roomId, boolean status);
+
+    @Modifying
+    @Query(value = "UPDATE room SET number = (SELECT it.number FROM (SELECT number FROM room WHERE room_id = ?1) AS it)+1 WHERE room_id = ?1", nativeQuery = true)
+    @Transactional
+    void increase(int roomId);
 }

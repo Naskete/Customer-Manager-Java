@@ -21,4 +21,9 @@ public interface CustomerRepository extends JpaRepository<Customer, String> {
     @Query(value = "INSERT INTO customer(id, count, name, phone) VALUES (?1, 0, ?2, ?3) ON  DUPLICATE KEY UPDATE phone = ?3", nativeQuery = true)
     @Transactional
     void customerRegister(String id, String name, String phone);
+
+    @Modifying
+    @Query(value = "UPDATE customer SET count = (SELECT it.count FROM (SELECT count FROM customer WHERE id = ?1) AS it)+1 WHERE id = ?1", nativeQuery = true)
+    @Transactional
+    void increase(String id);
 }
