@@ -17,11 +17,15 @@ public class Record {
 
     private String cusID;      // cusID 用户id
 
-    private int num;        // number 房间号
+    private int roomID;        // number 房间号
 
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date date;      // date 日期
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date start;      // date 日期
+
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date end;
 
     public Record() {}
 
@@ -41,19 +45,27 @@ public class Record {
         this.cusID = cusID;
     }
 
-    public Date getDate() {
-        return date;
+    public Date getStart() {
+        return start;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setStart(Date start) {
+        this.start = start;
     }
 
-    public int getNum() {
-        return num;
+    public Date getEnd() {
+        return end;
     }
 
-    public void setNum(int num) {
-        this.num = num;
+    public void setEnd(Date end) {
+        this.end = end;
+    }
+
+    public int getRoomID() {
+        return roomID;
+    }
+
+    public void setRoomID(int roomID) {
+        this.roomID = roomID;
     }
 }
